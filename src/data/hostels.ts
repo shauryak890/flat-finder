@@ -49,7 +49,7 @@ export const collegesList = [
   'Sri Venkateswara College'
 ];
 
-const hostels: Hostel[] = [
+export const hostels: Hostel[] = [
   {
     id: "1",
     name: "North Campus Residency",
