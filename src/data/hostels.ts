@@ -1,18 +1,39 @@
 export interface Hostel {
-  id: number;
+  id: string;
   name: string;
+  type: string;
+  gender: string;
   address: string;
-  distance: {
-    college: number;
-    metro: number;
-  };
+  neighborhood?: string;
+  distanceToCollege: number;
+  distanceToMetro: number;
   price: number;
-  messType: 'veg' | 'non-veg' | 'both';
-  amenities: string[];
-  photos: string[];
-  contactInfo: string;
   rating: number;
-  reviews: number;
+  reviewCount: number;
+  description: string;
+  images: string[];
+  amenities: string[];
+  roomTypes: string[];
+  pricing: Record<string, number>;
+  messType: string;
+  messFee?: number;
+  securityDeposit: number;
+  electricityIncluded: boolean;
+  checkInTime?: string;
+  checkOutTime?: string;
+  totalRooms: number;
+  minimumStay?: number;
+  paymentOptions?: string[];
+  nearbyLandmarks?: string[];
+  safetyRating?: number;
+  ratings?: {
+    cleanliness: number;
+    staff: number;
+    facilities: number;
+    location: number;
+    value: number;
+    food: number;
+  };
 }
 
 export const collegesList = [
@@ -28,157 +49,271 @@ export const collegesList = [
   'Sri Venkateswara College'
 ];
 
-export const hostels: Hostel[] = [
+const hostels: Hostel[] = [
   {
-    id: 1,
-    name: 'Sunrise Hostel',
-    address: 'Vijay Nagar, Delhi University North Campus',
-    distance: {
-      college: 0.5,
-      metro: 1.2
-    },
+    id: "1",
+    name: "North Campus Residency",
+    type: "PG Hostel",
+    gender: "Female",
+    address: "2134, Hudson Lane, GTB Nagar, Delhi - 110009",
+    neighborhood: "Hudson Lane",
+    distanceToCollege: 0.8,
+    distanceToMetro: 0.3,
     price: 12000,
-    messType: 'both',
-    amenities: ['WiFi', 'AC', 'Laundry', 'Library', '24/7 Security'],
-    photos: [
-      'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80',
-      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80'
-    ],
-    contactInfo: '+91 9876543210',
-    rating: 4.5,
-    reviews: 120
-  },
-  {
-    id: 2,
-    name: 'Student Haven',
-    address: 'Kamla Nagar, Near North Campus',
-    distance: {
-      college: 1.0,
-      metro: 0.5
-    },
-    price: 10000,
-    messType: 'veg',
-    amenities: ['WiFi', 'Gym', 'Study Rooms', 'Indoor Games'],
-    photos: [
-      'https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80',
-      'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80'
-    ],
-    contactInfo: '+91 9876543211',
     rating: 4.2,
-    reviews: 98
+    reviewCount: 132,
+    description: "Comfortable female hostel with modern amenities, located just minutes away from Delhi University North Campus. Our property offers air-conditioned rooms, high-speed WiFi, and delicious home-cooked meals.",
+    images: [
+      "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1560448204-603b3fc33ddc?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+    ],
+    amenities: ["wifi", "ac", "laundry", "security", "studyRoom", "powerBackup", "hotWater"],
+    roomTypes: ["Single Room", "Double Sharing", "Triple Sharing"],
+    pricing: {
+      "Single Room": 16000,
+      "Double Sharing": 12000,
+      "Triple Sharing": 9000
+    },
+    messType: "Vegetarian",
+    messFee: 3500,
+    securityDeposit: 15000,
+    electricityIncluded: false,
+    checkInTime: "12:00 PM",
+    checkOutTime: "11:00 AM",
+    totalRooms: 45,
+    minimumStay: 3,
+    paymentOptions: ["Cash", "Bank Transfer", "UPI"],
+    nearbyLandmarks: ["Khalsa College", "Daulat Ram College", "GTB Nagar Metro Station"],
+    safetyRating: 4,
+    ratings: {
+      cleanliness: 4.3,
+      staff: 4.2,
+      facilities: 4.0,
+      location: 4.7,
+      value: 3.9,
+      food: 4.1
+    }
   },
   {
-    id: 3,
-    name: 'Metro Residency',
-    address: 'GTB Nagar, Delhi',
-    distance: {
-      college: 1.5,
-      metro: 0.2
-    },
-    price: 15000,
-    messType: 'non-veg',
-    amenities: ['WiFi', 'AC', 'Power Backup', 'CCTV', 'Hot Water'],
-    photos: [
-      'https://images.unsplash.com/photo-1513694203232-719a280e022f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80',
-      'https://images.unsplash.com/photo-1540518614846-7eded433c457?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80'
-    ],
-    contactInfo: '+91 9876543212',
-    rating: 4.7,
-    reviews: 210
-  },
-  {
-    id: 4,
-    name: 'South Campus Lodge',
-    address: 'Satya Niketan, South Campus',
-    distance: {
-      college: 0.8,
-      metro: 1.5
-    },
-    price: 13500,
-    messType: 'both',
-    amenities: ['WiFi', 'Food Delivery', 'Study Tables', 'Balcony'],
-    photos: [
-      'https://images.unsplash.com/photo-1556020685-ae41abfc9365?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80',
-      'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80'
-    ],
-    contactInfo: '+91 9876543213',
-    rating: 4.0,
-    reviews: 75
-  },
-  {
-    id: 5,
-    name: 'College Gateway',
-    address: 'Hudson Lane, Near North Campus',
-    distance: {
-      college: 0.3,
-      metro: 0.9
-    },
-    price: 18000,
-    messType: 'both',
-    amenities: ['WiFi', 'AC', 'TV Lounge', 'Housekeeping', 'Gaming Zone', 'Cafeteria'],
-    photos: [
-      'https://images.unsplash.com/photo-1536376072261-38c75010e6c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80',
-      'https://images.unsplash.com/photo-1505693314120-0d443867891c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80'
-    ],
-    contactInfo: '+91 9876543214',
-    rating: 4.8,
-    reviews: 155
-  },
-  {
-    id: 6,
-    name: 'University Plaza',
-    address: 'Model Town, Delhi',
-    distance: {
-      college: 2.0,
-      metro: 0.7
-    },
-    price: 9000,
-    messType: 'veg',
-    amenities: ['WiFi', 'Study Area', 'Common Kitchen', 'Water Purifier'],
-    photos: [
-      'https://images.unsplash.com/photo-1499916078039-922301b0eb83?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80',
-      'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80'
-    ],
-    contactInfo: '+91 9876543215',
+    id: "2",
+    name: "Metro Mansion",
+    type: "Hostel",
+    gender: "Male",
+    address: "54, Vijay Nagar, Delhi University, Delhi - 110009",
+    neighborhood: "Vijay Nagar",
+    distanceToCollege: 1.2,
+    distanceToMetro: 0.4,
+    price: 10000,
     rating: 3.9,
-    reviews: 65
-  },
-  {
-    id: 7,
-    name: 'Scholar\'s Home',
-    address: 'Malka Ganj, Delhi',
-    distance: {
-      college: 1.2,
-      metro: 1.0
-    },
-    price: 11500,
-    messType: 'non-veg',
-    amenities: ['WiFi', 'AC', 'Medical Assistance', 'Transportation', 'Refrigerator'],
-    photos: [
-      'https://images.unsplash.com/photo-1622866306950-81d17097d458?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80',
-      'https://images.unsplash.com/photo-1630699144867-37acec97df5a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80'
+    reviewCount: 98,
+    description: "Affordable male hostel near Delhi University with comfortable accommodation and basic amenities. We offer clean rooms, nutritious meals, and a conducive environment for studies.",
+    images: [
+      "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1560448204-603b3fc33ddc?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
     ],
-    contactInfo: '+91 9876543216',
-    rating: 4.3,
-    reviews: 89
+    amenities: ["wifi", "security", "powerBackup", "hotWater"],
+    roomTypes: ["Double Sharing", "Triple Sharing", "Dormitory"],
+    pricing: {
+      "Double Sharing": 11000,
+      "Triple Sharing": 9000,
+      "Dormitory": 7000
+    },
+    messType: "Both Veg & Non-Veg",
+    messFee: 3000,
+    securityDeposit: 10000,
+    electricityIncluded: true,
+    totalRooms: 30,
+    minimumStay: 6,
+    paymentOptions: ["Cash", "Bank Transfer"],
+    nearbyLandmarks: ["Hansraj College", "SRCC", "Vishwavidyalaya Metro Station"],
+    safetyRating: 3,
+    ratings: {
+      cleanliness: 3.7,
+      staff: 3.8,
+      facilities: 3.5,
+      location: 4.2,
+      value: 4.1,
+      food: 3.9
+    }
   },
   {
-    id: 8,
-    name: 'DU Residences',
-    address: 'Patel Chest, Near North Campus',
-    distance: {
-      college: 0.4,
-      metro: 1.3
-    },
+    id: "3",
+    name: "DU Comfort Stay",
+    type: "PG",
+    gender: "Co-ed",
+    address: "78, Kamla Nagar, Delhi - 110007",
+    neighborhood: "Kamla Nagar",
+    distanceToCollege: 1.5,
+    distanceToMetro: 0.7,
     price: 14000,
-    messType: 'both',
-    amenities: ['WiFi', 'AC', 'Laundry', '24/7 Security', 'Study Hall'],
-    photos: [
-      'https://images.unsplash.com/photo-1594560913095-8cf34bae6e28?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80',
-      'https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80'
-    ],
-    contactInfo: '+91 9876543217',
     rating: 4.5,
-    reviews: 102
+    reviewCount: 215,
+    description: "Premium co-living space for students with separate floors for males and females. Our PG offers spacious rooms, recreational facilities, high-speed internet, and various meal plans to choose from.",
+    images: [
+      "https://images.unsplash.com/photo-1560448204-603b3fc33ddc?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+    ],
+    amenities: ["wifi", "ac", "laundry", "gym", "security", "studyRoom", "powerBackup", "hotWater", "parking", "tvLounge"],
+    roomTypes: ["Single Room", "Double Sharing"],
+    pricing: {
+      "Single Room": 18000,
+      "Double Sharing": 14000
+    },
+    messType: "Both Veg & Non-Veg",
+    messFee: 4000,
+    securityDeposit: 20000,
+    electricityIncluded: false,
+    checkInTime: "2:00 PM",
+    checkOutTime: "12:00 PM",
+    totalRooms: 60,
+    paymentOptions: ["Cash", "Bank Transfer", "Credit/Debit Card", "UPI"],
+    nearbyLandmarks: ["Kirori Mal College", "Hindu College", "Kamla Nagar Market"],
+    safetyRating: 4.5,
+    ratings: {
+      cleanliness: 4.6,
+      staff: 4.4,
+      facilities: 4.7,
+      location: 4.3,
+      value: 4.2,
+      food: 4.5
+    }
+  },
+  {
+    id: "4",
+    name: "Scholars Home",
+    type: "Hostel",
+    gender: "Female",
+    address: "23, Patel Chest, Maurice Nagar, Delhi - 110007",
+    neighborhood: "Maurice Nagar",
+    distanceToCollege: 0.5,
+    distanceToMetro: 0.9,
+    price: 11000,
+    rating: 4.0,
+    reviewCount: 76,
+    description: "All-female hostel with a focus on academic environment and safety. We provide clean accommodations, nutritious vegetarian meals, and 24x7 security for peace of mind.",
+    images: [
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+    ],
+    amenities: ["wifi", "security", "studyRoom", "powerBackup", "hotWater"],
+    roomTypes: ["Double Sharing", "Triple Sharing"],
+    pricing: {
+      "Double Sharing": 12000,
+      "Triple Sharing": 10000
+    },
+    messType: "Vegetarian",
+    messFee: 3200,
+    securityDeposit: 12000,
+    electricityIncluded: true,
+    checkInTime: "1:00 PM",
+    checkOutTime: "11:00 AM",
+    totalRooms: 35,
+    minimumStay: 5,
+    nearbyLandmarks: ["Delhi School of Economics", "Law Faculty", "Arts Faculty"],
+    safetyRating: 4.5,
+    ratings: {
+      cleanliness: 4.1,
+      staff: 4.2,
+      facilities: 3.8,
+      location: 4.6,
+      value: 4.0,
+      food: 3.7
+    }
+  },
+  {
+    id: "5",
+    name: "Campus View Residency",
+    type: "PG",
+    gender: "Male",
+    address: "112, Outram Lines, Kingsway Camp, Delhi - 110009",
+    neighborhood: "Kingsway Camp",
+    distanceToCollege: 1.8,
+    distanceToMetro: 1.2,
+    price: 9500,
+    rating: 3.7,
+    reviewCount: 54,
+    description: "Budget-friendly PG for male students with basic amenities and good connectivity to Delhi University. We offer comfortable accommodations at affordable rates.",
+    images: [
+      "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+    ],
+    amenities: ["wifi", "security", "powerBackup", "hotWater"],
+    roomTypes: ["Double Sharing", "Triple Sharing", "Dormitory"],
+    pricing: {
+      "Double Sharing": 10500,
+      "Triple Sharing": 8500,
+      "Dormitory": 6500
+    },
+    messType: "Both Veg & Non-Veg",
+    messFee: 2800,
+    securityDeposit: 10000,
+    electricityIncluded: false,
+    totalRooms: 25,
+    paymentOptions: ["Cash", "Bank Transfer"],
+    nearbyLandmarks: ["Ramjas College", "Daulat Ram College", "Kingsway Camp Market"],
+    safetyRating: 3.5,
+    ratings: {
+      cleanliness: 3.5,
+      staff: 3.6,
+      facilities: 3.4,
+      location: 3.8,
+      value: 4.2,
+      food: 3.5
+    }
+  },
+  {
+    id: "6",
+    name: "University Square PG",
+    type: "PG",
+    gender: "Co-ed",
+    address: "45, Mukherjee Nagar, Delhi - 110009",
+    neighborhood: "Mukherjee Nagar",
+    distanceToCollege: 2.2,
+    distanceToMetro: 1.5,
+    price: 13000,
+    rating: 4.3,
+    reviewCount: 121,
+    description: "Modern co-ed PG with separate sections for males and females, offering convenient access to Delhi University and coaching centers. Ideal for students preparing for competitive exams.",
+    images: [
+      "https://images.unsplash.com/photo-1560448204-603b3fc33ddc?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+    ],
+    amenities: ["wifi", "ac", "laundry", "security", "studyRoom", "powerBackup", "hotWater"],
+    roomTypes: ["Single Room", "Double Sharing", "Triple Sharing"],
+    pricing: {
+      "Single Room": 17000,
+      "Double Sharing": 13000,
+      "Triple Sharing": 10000
+    },
+    messType: "Both Veg & Non-Veg",
+    messFee: 3500,
+    securityDeposit: 15000,
+    electricityIncluded: false,
+    checkInTime: "12:00 PM",
+    checkOutTime: "11:00 AM",
+    totalRooms: 50,
+    minimumStay: 3,
+    paymentOptions: ["Cash", "Bank Transfer", "UPI"],
+    nearbyLandmarks: ["Delhi University Library", "Mukherjee Nagar Market", "Batra Cinema"],
+    safetyRating: 4,
+    ratings: {
+      cleanliness: 4.4,
+      staff: 4.3,
+      facilities: 4.2,
+      location: 4.0,
+      value: 4.1,
+      food: 4.3
+    }
   }
-]; 
+];
+
+export default hostels; 
